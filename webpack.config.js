@@ -3,7 +3,7 @@
 var webpack = require('webpack');
 var path = require('path');
 
-const DEBUG = false//!process.argv.includes('--release');
+const DEBUG = false //!process.argv.includes('--release');
 
 module.exports = {
 
@@ -23,7 +23,8 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.css$/,
-            loader: 'style!css'
+            loader: 'style!css?modules',
+            include: /flexboxgrid/,
         }, {
             test: /\.js$/,
             include: [
