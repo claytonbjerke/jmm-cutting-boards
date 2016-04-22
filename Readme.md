@@ -1,10 +1,18 @@
 ## React Starter Kit
 
+## Quick Start:
+1. npm i
+2. npm start
+3. http://localhost:9000
+
 ## In Progress Demo:
 
-- https://react-starter-kit.herokuapp.com/
+- https://jmm-cutting-boards.herokuapp.com/
 
 ## TODO:
+- mobile view first
+- login
+- material-UI
 - organize teh codez again
 - production server
 - server side rendering
@@ -35,3 +43,5 @@
    - http://www.theodo.fr/blog/2016/03/getting-started-with-react-redux-and-immutable-a-test-driven-tutorial-part-2/
 11. React Router Redux
    - https://github.com/reactjs/react-router-redux
+12. Material UI
+   - http://www.material-ui.com/#/

@@ -1,22 +1,27 @@
 import React from 'react';
+import AppBar from 'material-ui/AppBar';
+import menu from 'material-ui/svg-icons/navigation/menu'
 import NavLink from './NavLink';
-import { IndexLink, Link } from 'react-router';
+import {IndexLink, Link} from 'react-router';
 
-import Footer from './Footer';
+import {deepOrange500} from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-export default React.createClass({
-  render() {
-    return (
-        <div>
-          <h1>react-starter-kit</h1>
-          <ul role="nav">
-            <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-            <li><NavLink to="/todo">ToDo</NavLink></li>
-            <li><NavLink to="/references">References</NavLink></li>
-          </ul>
-          {this.props.children}
-          <Footer/>
-        </div>
-    );
-  }
-})
+const muiTheme = getMuiTheme({
+    palette: {
+        accent1Color: deepOrange500
+    }
+});
+
+class App extends React.Component {
+    render() {
+        return (
+            <MuiThemeProvider muiTheme={muiTheme}>
+                <AppBar title="jmm-cutting-boards"/>
+            </MuiThemeProvider>
+        );
+    }
+}
+
+export default App;
