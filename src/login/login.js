@@ -2,6 +2,6 @@ import React from 'react'
 
 export default React.createClass({
   render() {
-    return <div>References</div>
+    return <div>Log In</div>
   }
 })
