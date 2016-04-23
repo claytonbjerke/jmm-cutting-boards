@@ -1,4 +1,4 @@
-## React Starter Kit
+## jmm-cutting-boards
 
 [In Progress Demo](http://jmm-cutting-boards.herokuapp.com/)
 
