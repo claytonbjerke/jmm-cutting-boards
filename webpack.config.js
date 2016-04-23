@@ -1,13 +1,9 @@
-// bundle.js  1.39 MB       0  [emitted]  main
-// bundle.js.map  1.64 MB       0  [emitted]  main
 var webpack = require('webpack');
 var path = require('path');
 
-const DEBUG = false //!process.argv.includes('--release');
-
 module.exports = {
 
-    devtool: DEBUG ? 'cheap-source-map' : false,
+    devtool: 'cheap-source-map',
 
     entry: [
         'webpack-dev-server/client?http://localhost:9000',
@@ -36,6 +32,7 @@ module.exports = {
 
     devServer: {
         contentBase: __dirname + '/src',
+        host: '0.0.0.0',
         port: 9000,
         colors: true,
         historyApiFallback: true,
@@ -44,6 +41,15 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"production"'
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+                drop_console: false
+            }
+        })
     ]
 };
