@@ -1,16 +1,13 @@
+var Webpack = require('webpack');
 var express = require('express');
-var https = require('https');
-var http = require('http');
-var app = express();
 var path = require('path');
+var app = express();
 
-app.set('port', (process.env.PORT || 8000));
+var isProduction = process.env.NODE_ENV === 'production';
+var port = isProduction ? process.env.PORT : 8080;
 
-app.use(express.static(path.join(__dirname, '/src')));
-
-// app.listen(app.get('port'), function() {
-//     console.log('Listening on port: ', app.get('port'));
-// });
-
-http.createServer(app).listen(app.get('port'));
-//https.createServer({}, app).listen(app.get('port'));
+app.set('port', port);
+app.use(express.static(path.join(__dirname, '/public')));
+app.listen(app.get('port'), function() {
+    console.log('Listening on port: ', app.get('port'));
+});

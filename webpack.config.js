@@ -3,16 +3,16 @@ var path = require('path');
 
 module.exports = {
 
-    devtool: 'cheap-source-map',
+    devtool: 'cheap-module-source-map',
 
     entry: [
-        'webpack-dev-server/client?http://localhost:9000',
+        'webpack-dev-server/client?http://localhost:8080',
         'webpack/hot/only-dev-server',
-        __dirname + '/src/index.js'
+        path.resolve(__dirname, 'src', 'index.js')
     ],
 
     output: {
-        path: __dirname + '/src',
+        path: path.resolve(__dirname, 'public'),
         filename: 'bundle.js'
     },
 
@@ -26,7 +26,8 @@ module.exports = {
             include: [
                 path.resolve(__dirname, "src")
             ],
-            loader: 'react-hot!babel'
+            loader: 'react-hot!babel',
+            exclude: [path.resolve(__dirname, 'node_modules')]
         }]
     },
 

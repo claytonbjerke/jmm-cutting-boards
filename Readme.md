@@ -5,4 +5,4 @@
 ## Quick Start:
 1. npm i
 2. npm start
-3. http://localhost:9000
+3. navigate to http://localhost:8080
