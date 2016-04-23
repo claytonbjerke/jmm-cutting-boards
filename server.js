@@ -7,7 +7,7 @@ var isProduction = process.env.NODE_ENV === 'production';
 var port = isProduction ? process.env.PORT : 8080;
 
 app.set('port', port);
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/dist')));
 app.listen(app.get('port'), function() {
     console.log('Listening on port: ', app.get('port'));
 });
