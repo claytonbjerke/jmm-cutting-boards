@@ -12,7 +12,7 @@ import Home from './home/Home';
 injectTapEventPlugin();
 
 render((
-    <Router history={browserHistory}>
+    <Router history={browserHistory}> 
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
       </Route>

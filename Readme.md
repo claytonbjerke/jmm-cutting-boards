@@ -4,5 +4,10 @@
 
 ## Quick Start:
 1. npm i
-2. npm start
-3. navigate to http://localhost:8080
+2. npm run start-dev (using src directory)
+
+### Run Production Build Locally:
+1. npm start (cleans up, builds, and uses dist directory)
+
+## Build for Production:
+1. npm run build

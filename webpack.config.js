@@ -1,56 +1,38 @@
-var webpack = require('webpack');
-var path = require('path');
+import webpack from 'webpack';
+import path from 'path';
 
-module.exports = {
+const GLOBALS = {
+  'process.env.NODE_ENV': JSON.stringify('development'),
+  __DEV__: true
+};
 
-    devtool: 'cheap-module-source-map',
-
-    entry: [
-        'webpack-dev-server/client?http://localhost:8080',
-        'webpack/hot/only-dev-server',
-        path.resolve(__dirname, 'src', 'index.js')
-    ],
-
-    output: {
-        path: path.resolve(__dirname, 'public'),
-        filename: 'bundle.js'
-    },
-
-    module: {
-        loaders: [{
-            test: /\.css$/,
-            loader: 'style!css?modules',
-            include: /flexboxgrid/,
-        }, {
-            test: /\.js$/,
-            include: [
-                path.resolve(__dirname, "src")
-            ],
-            loader: 'react-hot!babel',
-            exclude: [path.resolve(__dirname, 'node_modules')]
-        }]
-    },
-
-    devServer: {
-        contentBase: __dirname + '/src',
-        host: '0.0.0.0',
-        port: 9000,
-        colors: true,
-        historyApiFallback: true,
-        inline: true,
-        hot: true
-    },
-
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"production"'
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-                drop_console: false
-            }
-        })
-    ]
+export default {
+  debug: true,
+  devtool: 'cheap-module-eval-source-map',
+  noInfo: true,
+  entry: [
+    'webpack-hot-middleware/client?reload=true',
+    './src/index'
+  ],
+  target: 'web',
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new webpack.DefinePlugin(GLOBALS),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      include: path.join(__dirname, 'src'),
+      loaders: ['babel']
+    }, {
+      test: /\.css$/,
+      loaders: ['style', 'css?sourceMap']
+    }]
+  }
 };
