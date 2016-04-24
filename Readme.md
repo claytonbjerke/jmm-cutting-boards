@@ -4,7 +4,7 @@
 
 ## Quick Start:
 1. npm i
-2. npm run start-dev (using src directory)
+2. npm run start-dev (uses src directory)
 
 ### Run Production Build Locally:
 1. npm start (cleans up, builds, and uses dist directory)
