@@ -1,1 +1,1 @@
-// export todoReducer from '../todo/ToDoReducer'
+export authReducer from '../Authentication/AuthReducer';

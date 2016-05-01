@@ -1,7 +1,7 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
 
-import Auth from '.././services/Auth';
+import Auth from '.././Authentication/Auth';
 
 export default class Login extends React.Component {
 
