@@ -1,7 +1,7 @@
-/*eslint-disable no-console */
+/* eslint-disable no-console */
 import fs from 'fs';
-import colors from 'colors';
 import cheerio from 'cheerio';
+import colors from 'colors';
 
 fs.readFile('src/index.html', 'utf8', (err, markup) => {
   if (err) {
@@ -10,9 +10,9 @@ fs.readFile('src/index.html', 'utf8', (err, markup) => {
 
   const $ = cheerio.load(markup);
 
-  //$('head').prepend('<link rel="stylesheet" href="styles.css">');
+  // $('head').prepend('<link rel="stylesheet" href="styles.css">');
 
-  fs.writeFile('dist/index.html', $.html(), 'utf8', function (err) {
+  fs.writeFile('dist/index.html', $.html(), 'utf8', function(err) {
     if (err) {
       return console.log(err);
     }

@@ -35,14 +35,14 @@ export default class TextInput extends React.Component {
   render() {
     return (
       <input className="edit"
-                  autoFocus={true}
-                  value={this.state.value}
-                  onChange={this._handleOnChange.bind(this)}
-                  type="text"
-                  ref="itemInput"
-                  onKeyDown={this._handleKeyDown.bind(this)}
-                  onBlur={this._handleOnBlur.bind(this)}
-                  />
+        autoFocus={true}
+        value={this.state.value}
+        onChange={this._handleOnChange.bind(this)}
+        type="text"
+        ref="itemInput"
+        onKeyDown={this._handleKeyDown.bind(this)}
+        onBlur={this._handleOnBlur.bind(this)}
+        />
     );
   }
-};
+}

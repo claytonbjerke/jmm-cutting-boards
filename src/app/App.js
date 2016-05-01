@@ -1,27 +1,27 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import menu from 'material-ui/svg-icons/navigation/menu'
+import {IndexLink} from 'react-router';
+
 import NavLink from './NavLink';
-import {IndexLink, Link} from 'react-router';
 
-import {deepOrange500} from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+export default class App extends React.Component {
 
-const muiTheme = getMuiTheme({
-    palette: {
-        accent1Color: deepOrange500
-    }
-});
-
-class App extends React.Component {
-    render() {
-        return (
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <AppBar title="jmm-cutting-boards"/>
-            </MuiThemeProvider>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <ul role="nav">
+          <li>
+            <IndexLink to="/" activeClassName="active">{'Home'}</IndexLink>
+          </li>
+          <li>
+            <NavLink to="/login">{'Login'}</NavLink>
+          </li>
+        </ul>
+        {this.props.children}
+      </div>
+    );
+  }
 }
 
-export default App;
+App.propTypes = {
+  children: React.PropTypes.element.isRequired
+};
