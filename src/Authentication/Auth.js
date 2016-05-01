@@ -6,7 +6,7 @@ import {
   connect
 } from 'react-redux';
 
-export default {
+const Auth =  {
   userLogin(username, password) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -32,3 +32,8 @@ export default {
     Reflect.deleteProperty(localStorage.token);
   }
 };
+
+export default connect(
+  state => ({ number: state.count.number }),
+  { increase, decrease }
+)(Auth)
