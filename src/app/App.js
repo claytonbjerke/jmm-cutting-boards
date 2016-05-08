@@ -2,34 +2,45 @@ import React from 'react';
 import {IndexLink} from 'react-router';
 
 import NavLink from './NavLink';
-import Auth from '../Authentication/Auth';
+import auth from '.././Authentication/Auth';
+
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: Auth.loggedIn()
+      loggedIn: auth.loggedIn()
     };
   }
 
+  _logout() {
+    auth.logout();
+    this.setState({
+      loggedIn: auth.loggedIn()
+    });
+  }
+
   render() {
-    const logOut = () => {
-      Auth.logout();
-      this.setState({
-        loggedIn: Auth.loggedIn()
-      });
-    };
     return (
       <div>
         <ul role="nav">
           <li>
             <IndexLink to="/" activeClassName="active">{'Home'}</IndexLink>
           </li>
+          {this.state.loggedIn ? (
+            <li>
+              <NavLink to="/dashboard">{'Dashboard'}</NavLink>
+            </li>
+          ) : (
+              ''
+          )}
           <li>
-            {this.state.loggedIn
-              ? <NavLink to="/" onClick={logOut}>{'Logout'}</NavLink>
-              : <NavLink to="/login">{'Login'}</NavLink>}
+            {this.state.loggedIn ? (
+              <NavLink to="/" onClick={this._logout}>{'Log out'}</NavLink>
+            ) : (
+              <NavLink to="/login">{'Sign in'}</NavLink>
+            )}
           </li>
         </ul>
         {this.props.children}

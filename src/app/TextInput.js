@@ -1,6 +1,5 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classNames from 'classnames';
 
 export default class TextInput extends React.Component {
 
@@ -16,10 +15,12 @@ export default class TextInput extends React.Component {
         return this.props.doneEditing(this.props.itemId, this.state.value);
       case 'Escape':
         return this.cancelEditing();
+      default:
+        return;
     }
   }
 
-  _handleOnBlur(e) {
+  _handleOnBlur() {
     return this.cancelEditing();
   }
 
@@ -28,7 +29,7 @@ export default class TextInput extends React.Component {
   }
 
   cancelEditing() {
-    this.setState({'value': this.props.text});
+    this.setState({value: this.props.text});
     return this.props.cancelEditing(this.props.itemId);
   }
 
@@ -38,11 +39,11 @@ export default class TextInput extends React.Component {
         autoFocus={true}
         value={this.state.value}
         onChange={this._handleOnChange.bind(this)}
-        type="text"
+        type={'text'}
         ref="itemInput"
         onKeyDown={this._handleKeyDown.bind(this)}
         onBlur={this._handleOnBlur.bind(this)}
-        />
+      />
     );
   }
 }
