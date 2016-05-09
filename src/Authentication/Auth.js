@@ -1,3 +1,11 @@
+/*
+
+TODO:
+- toggle between session and local storage depending on keep me logged in
+
+ */
+
+
 const login = (username, password) => {
   return new Promise((resolve, reject) => {
     if (username === 'hi' && password === 'lol') {

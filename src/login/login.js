@@ -1,54 +1,50 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import {connect} from 'react-redux';
 
-import auth from '.././Authentication/Auth';
+let Login = ({dispatch}) => {
+  const emptyString = '';
+  let usernameInput = emptyString;
+  let passwordInput = emptyString;
 
-export default class LoginComponent extends React.Component {
-
-  render() {
-    const emptyString = '';
-    let usernameInput = emptyString;
-    let passwordInput = emptyString;
-
-    const logIn = () => {
-      auth.login(usernameInput.value, passwordInput.value)
-        .then((status) => {
-          if (status.authenticated) {
-            browserHistory.push('/dashboard');
-          }
-        })
-        .catch((err) => {
-          console.log('LOG IN ERROR: ', err);
-        });
+  const logIn = (username, password) => {
+    return {
+      type: 'AUTH_USER',
+      username,
+      password
     };
-
-    return (
+  };
+  return (
+    <div>
+      <input
+        autoFocus
+        type={'text'}
+        placeholder={'username'}
+        ref={ref => {usernameInput = ref;}}
+      />
+      <input
+        type={'password'}
+        placeholder={'password'}
+        ref={ref => {passwordInput = ref;}}
+      />
       <div>
         <input
-          autoFocus
-          type={'text'}
-          placeholder={'username'}
-          ref={ref => {usernameInput = ref;}}
-        />
-        <input
-          type={'password'}
-          placeholder={'username'}
-          ref={ref => {passwordInput = ref;}}
-        />
-        <div>
-          <input
-            type={'checkbox'}
-            onClick={(e) => {
-              //  keepLoggedIn = e.target.checked
-            }}
-          />{'Keep me logged in'}
-          <button
-            onClick={logIn}
-          >
+          type={'checkbox'}
+          onClick={(e) => {
+            //  keepLoggedIn = e.target.checked
+          }}
+        />{'Keep me logged in'}
+        <button
+          onClick={() => {
+            dispatch(logIn(usernameInput.value, passwordInput.value));
+          }}
+        >
             {'Log In'}
-          </button>
-        </div>
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+Login = connect()(Login);
+
+export default Login;
