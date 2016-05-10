@@ -1,8 +1,10 @@
 import React from 'react';
 import {render} from 'react-dom';
+import reduxThunk from 'redux-thunk';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
-import {combineReducers, createStore} from 'redux';
+import {combineReducers, createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
+import createLogger from 'redux-logger';
 
 import App from './app/App';
 import Home from './home/Home';
@@ -22,12 +24,20 @@ const requireAuth = (nextState, replace) => {
   }
 };
 
-let app = combineReducers({
+let rootReducer = combineReducers({
   ...reducers
 });
+const logger = createLogger();
+let store = createStore(
+  rootReducer,
+  applyMiddleware(
+    reduxThunk,
+    logger
+  )
+);
 
 render((
-  <Provider store={createStore(app)}>
+  <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>

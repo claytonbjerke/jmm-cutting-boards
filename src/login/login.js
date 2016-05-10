@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {logInUser} from '.././Authentication/AuthActions';
+
 
 let Login = ({dispatch}) => {
   const emptyString = '';
@@ -35,7 +37,7 @@ let Login = ({dispatch}) => {
         />{'Keep me logged in'}
         <button
           onClick={() => {
-            dispatch(logIn(usernameInput.value, passwordInput.value));
+            dispatch(logInUser(usernameInput.value, passwordInput.value));
           }}
         >
             {'Log In'}
