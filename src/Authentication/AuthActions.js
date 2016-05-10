@@ -17,7 +17,6 @@ export function authenticatedUser(response) {
   };
 }
 
-export const LOG_IN_USER = 'LOG_IN_USER';
 export function logInUser(username, password) {
   return function(dispatch) {
     dispatch(authenticateUser(username, password));
