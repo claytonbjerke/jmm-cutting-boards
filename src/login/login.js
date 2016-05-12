@@ -2,19 +2,30 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {logInUser} from '.././Authentication/AuthActions';
 
+const mapStateToProps = (
+    state
+) => {
+  return {
+    response: state.response
+  };
+};
 
-let Login = ({dispatch}) => {
+const mapDispatchToProps = (
+    dispatch
+) => {
+  return {
+    onClick: (username, password) => {
+      dispatch(
+          logInUser(username, password)
+        );
+    }
+  };
+};
+
+let Login = ({onClick}) => {
   const emptyString = '';
   let usernameInput = emptyString;
   let passwordInput = emptyString;
-
-  const logIn = (username, password) => {
-    return {
-      type: 'AUTH_USER',
-      username,
-      password
-    };
-  };
   return (
     <div>
       <input
@@ -36,8 +47,9 @@ let Login = ({dispatch}) => {
           }}
         />{'Keep me logged in'}
         <button
-          onClick={() => {
-            dispatch(logInUser(usernameInput.value, passwordInput.value));
+          onClick={(e) => {
+            e.preventDefault();
+            onClick(usernameInput.value, passwordInput.value);
           }}
         >
             {'Log In'}
@@ -47,6 +59,9 @@ let Login = ({dispatch}) => {
   );
 };
 
-Login = connect()(Login);
+Login = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
 
 export default Login;

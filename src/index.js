@@ -13,6 +13,12 @@ import Dashboard from './dashboard/dashboard';
 import auth from './Authentication/Auth';
 import * as reducers from './app/reducers';
 
+/*
+TODO:
+- need app init action for initial launch to check login cred and if token still
+  stored in local storage (react-redux-router??)
+ */
+
 const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) {
     replace({
