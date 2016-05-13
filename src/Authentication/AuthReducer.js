@@ -2,7 +2,8 @@ import Immutable from 'immutable';
 import Auth from './Auth';
 import {
   AUTHENTICATE_USER,
-  AUTHENTICATED_USER
+  AUTHENTICATED_USER,
+  LOG_OUT
 } from './AuthActions';
 const defaultState = new Immutable.List();
 
@@ -21,6 +22,11 @@ export default function authReducer(state = defaultState, action) {
         ...state,
         isFetching: false,
         response: action.response
+      };
+    case LOG_OUT:
+      return {
+        ...state,
+        loggedIn: action.loggedIn
       };
     default:
       return state;

@@ -17,8 +17,17 @@ export function authenticatedUser(response) {
   };
 }
 
+export const LOG_OUT = 'LOG_OUT';
+export function logOut() {
+  Auth.logout();
+  return {
+    type: LOG_OUT,
+    loggedIn: false
+  };
+}
+
 export function logInUser(username, password) {
-  return function(dispatch) {
+  return function loginUserInnerFunc(dispatch) {
     dispatch(authenticateUser(username, password));
     return Auth.login(username, password).then((response) => {
       dispatch(authenticatedUser(response));
