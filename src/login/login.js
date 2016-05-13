@@ -59,10 +59,6 @@ let Login = ({onClick}) => {
   );
 };
 
-Login.propTypes = {
-  onClick: React.PropTypes.func.isRequired
-};
-
 Login = connect(
   mapStateToProps,
   mapDispatchToProps

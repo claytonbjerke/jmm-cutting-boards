@@ -2,16 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {IndexLink} from 'react-router';
 
-import {appStartUp} from './app-start-up-actions';
-import {logOut} from '.././Authentication/AuthActions';
+import {logOutUser, appStartUp} from '.././Authentication/AuthActions';
 import NavLink from './NavLink';
-import auth from '.././Authentication/Auth';
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.props.dispatch(appStartUp(auth.loggedIn()));
+    this.props.dispatch(appStartUp());
   }
 
   render() {
@@ -30,7 +28,11 @@ export default class App extends React.Component {
           )}
           <li>
             {this.props.loggedIn ? (
-              <NavLink to="/" onClick={this.props.dispatch(logOut())}>{'Log out'}</NavLink>
+              <NavLink to="/" onClick={() => {
+                this.props.dispatch(logOutUser());
+              }}>
+                {'Log out'}
+              </NavLink>
             ) : (
               <NavLink to="/login">{'Sign in'}</NavLink>
             )}
@@ -52,7 +54,7 @@ const mapStateToProps = (
     state
 ) => {
   return {
-    loggedIn: state.appStartUpReducer.loggedIn
+    loggedIn: state.authReducer.loggedIn
   };
 };
 
