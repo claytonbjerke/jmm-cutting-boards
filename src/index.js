@@ -10,6 +10,7 @@ import App from './app/App';
 import Home from './home/Home';
 import LoginPage from './login/login-page';
 import Dashboard from './dashboard/dashboard';
+import SignUpPage from './sign-up/sign-up-page';
 import auth from './Authentication/Auth';
 import * as reducers from './app/reducers';
 
@@ -49,6 +50,7 @@ render((
         <IndexRoute component={Home}/>
         <Route path="/login" component={LoginPage}/>
         <Route path="/dashboard" component={Dashboard} onEnter={requireAuth}/>
+        <Route path="/sign-up" component={SignUpPage}/>
       </Route>
     </Router>
   </Provider>
