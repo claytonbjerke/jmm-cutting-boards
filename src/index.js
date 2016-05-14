@@ -11,7 +11,6 @@ import Home from './home/Home';
 import LoginPage from './login/login-page';
 import Dashboard from './dashboard/dashboard';
 import SignUpPage from './sign-up/sign-up-page';
-import auth from './Authentication/Auth';
 import * as reducers from './app/reducers';
 
 /*
@@ -21,7 +20,8 @@ TODO:
  */
 
 const requireAuth = (nextState, replace) => {
-  if (!auth.loggedIn()) {
+  const loggedIn = true;
+  if (!loggedIn) {
     replace({
       pathname: '/login',
       state: {
