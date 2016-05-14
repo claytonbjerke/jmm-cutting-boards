@@ -1,64 +1,41 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-export default class Dashboard extends React.Component {
+import NavLink from '../app/NavLink';
+import SignUpForm from './sign-up-form';
 
+/*
+TODO:
+- needs to show sign up page if user has not submitted
+- else show success or error depending on response of submission
+
+ */
+
+class SignUpPage extends React.Component {
   render() {
-    const emptyString = '';
-    let signUpForm = {
-      firstName: emptyString,
-      lastName: emptyString,
-      phoneNumber: emptyString,
-      email: emptyString,
-      password: emptyString
-    };
-
-    const onClick = (form) => {
-      console.log(form.email.value);
-    };
-
     return (
       <div>
-        {'Fill out this form to get started'}
-        <div>
+        {!this.props.status ? (
+          <SignUpForm/>
+        ) : (
           <div>
-            <input
-              autoFocus
-              type={'text'}
-              placeholder={'First Name'}
-              ref={ref => {signUpForm.firstName = ref;}} />
-            <input
-              type={'text'}
-              placeholder={'Last Name'}
-              ref={ref => {signUpForm.lastName = ref;}} />
+            {'Please check your email. '}
+            <NavLink to="/login">{'Login'}</NavLink>
           </div>
-          <div>
-            <input
-              type={'text'}
-              placeholder={'Phone Number'}
-              ref={ref => {signUpForm.phoneNumber = ref;}} />
-          </div>
-          <div>
-            <input
-              type={'text'}
-              placeholder={'Email'}
-              ref={ref => {signUpForm.email = ref;}} />
-          </div>
-          <div>
-            <input
-              type={'password'}
-              placeholder={'Password'}
-              ref={ref => {signUpForm.password = ref;}} />
-          </div>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              onClick(signUpForm);
-            }}
-          >
-              {'Sign Up'}
-          </button>
-        </div>
+        )}
       </div>
     );
   }
 }
+
+const mapStateToProps = (
+    state
+) => {
+  return {
+    status: state.signUpReducer.status
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(SignUpPage);

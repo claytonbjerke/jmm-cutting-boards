@@ -1,12 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { browserHistory } from 'react-router';
+
 import {logInUser} from '.././Authentication/AuthActions';
 
 const mapStateToProps = (
     state
 ) => {
   return {
-    response: state.response
+    loggedIn: state.authReducer.loggedIn
   };
 };
 
@@ -15,14 +17,17 @@ const mapDispatchToProps = (
 ) => {
   return {
     onClick: (username, password) => {
-      dispatch(
+      return dispatch(
           logInUser(username, password)
         );
     }
   };
 };
 
-let Login = ({onClick}) => {
+let Login = ({
+  onClick,
+  loggedIn
+}) => {
   const emptyString = '';
   let usernameInput = emptyString;
   let passwordInput = emptyString;
@@ -49,7 +54,11 @@ let Login = ({onClick}) => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            onClick(usernameInput.value, passwordInput.value);
+            onClick(usernameInput.value, passwordInput.value).then(() => {
+              if (loggedIn) {
+                browserHistory.push('/dashboard');
+              }
+            });
           }}
         >
             {'Log In'}

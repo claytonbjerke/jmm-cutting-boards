@@ -1,11 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {IndexLink} from 'react-router';
 
-import {logOutUser, appStartUp} from '.././Authentication/AuthActions';
-import NavLink from './NavLink';
+import {appStartUp} from '.././Authentication/AuthActions';
+import NavBar from './nav-bar/nav-bar';
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props);
@@ -15,32 +14,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <ul role="nav">
-          <li>
-            <IndexLink to="/" activeClassName="active">{'Home'}</IndexLink>
-          </li>
-          {this.props.loggedIn ? (
-            <li>
-              <NavLink to="/dashboard">{'Dashboard'}</NavLink>
-            </li>
-          ) : (
-              ''
-          )}
-          <li>
-            {this.props.loggedIn ? (
-              <NavLink to="/" onClick={() => {
-                this.props.dispatch(logOutUser());
-              }}>
-                {'Log out'}
-              </NavLink>
-            ) : (
-              <NavLink to="/login">{'Login'}</NavLink>
-            )}
-          </li>
-          <li>
-            <NavLink to="/sign-up">{'Sign Up'}</NavLink>
-          </li>
-        </ul>
+        <NavBar/>
         {this.props.children}
       </div>
     );
@@ -53,14 +27,4 @@ App.propTypes = {
   loggedIn: React.PropTypes.bool
 };
 
-const mapStateToProps = (
-    state
-) => {
-  return {
-    loggedIn: state.authReducer.loggedIn
-  };
-};
-
-export default connect(
-  mapStateToProps
-)(App);
+export default connect()(App);

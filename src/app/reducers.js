@@ -1,2 +1,2 @@
 export authReducer from '../Authentication/AuthReducer';
-// export appStartUpReducer from './app-start-up-reducers';
+export signUpReducer from '../sign-up/sign-up-reducer';

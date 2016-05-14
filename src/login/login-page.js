@@ -4,7 +4,12 @@ import Login from './login';
 export default class LoginComponent extends React.Component {
   render() {
     return (
-      <Login/>
+      <div>
+        <Login/>
+        <p>
+          <b>{'username: hi \n password: lol'}</b>
+        </p>
+      </div>
     );
   }
 }

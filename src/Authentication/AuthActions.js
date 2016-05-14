@@ -48,7 +48,7 @@ export function appStartUpFinished(loggedIn) {
 }
 
 export function appStartUp() {
-  return function appStartUpInnerFunc(dispatch) {
+  return (dispatch) => {
     dispatch(appStartup());
     return Auth.loggedIn().then((loggedIn) => {
       dispatch(appStartUpFinished(loggedIn));
@@ -57,7 +57,7 @@ export function appStartUp() {
 }
 
 export function logInUser(username, password) {
-  return function loginUserInnerFunc(dispatch) {
+  return (dispatch) => {
     dispatch(authenticateUser(username, password));
     return Auth.login(username, password).then((response) => {
       dispatch(authenticatedUser(response));
@@ -66,7 +66,7 @@ export function logInUser(username, password) {
 }
 
 export function logOutUser() {
-  return function logOutUserInnerFunc(dispatch) {
+  return (dispatch) => {
     dispatch(logOut());
     return Auth.logOut().then((loggedIn) => {
       dispatch(loggedOut(loggedIn));
