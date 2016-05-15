@@ -1,6 +1,3 @@
-// This file configures the development web server
-// which supports hot reloading and synchronized testing.
-
 import browserSync from 'browser-sync';
 import historyApiFallback from 'connect-history-api-fallback';
 import webpack from 'webpack';

@@ -3,7 +3,7 @@ import path from 'path';
 
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('development'),
-  __DEV__: true
+  '__DEV__': true
 };
 
 export default {
@@ -12,12 +12,12 @@ export default {
   noInfo: true,
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    './src/index'
+    path.join(__dirname, 'src', 'index.js')
   ],
   target: 'web',
   output: {
     path: __dirname + '/dist',
-    publicPath: '/',
+    publicPath: 'http://localhost:3000/',
     filename: 'bundle.js'
   },
   plugins: [
@@ -29,7 +29,7 @@ export default {
     loaders: [{
       test: /\.js$/,
       include: path.join(__dirname, 'src'),
-      loaders: ['babel']
+      loaders: ['react-hot', 'babel']
     }, {
       test: /\.css$/,
       loaders: ['style', 'css?sourceMap']
