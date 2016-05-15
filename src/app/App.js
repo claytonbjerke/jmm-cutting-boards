@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {appStartUp} from '.././Authentication/AuthActions';
-import NavBar from './nav-bar/nav-bar';
+import {appStartUp} from '.././auth/auth-actions';
+import NavBar from './nav/nav-bar';
 
 class App extends React.Component {
 

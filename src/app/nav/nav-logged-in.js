@@ -1,8 +1,10 @@
+/* @flow */
+
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {logOutUser} from '../../Authentication/AuthActions';
-import NavLink from '.././NavLink';
+import {logOutUser} from '../../auth/auth-actions';
+import NavLink from './nav-link';
 
 let LoggedInNav = ({onClick}) => {
   const logOut = () => {

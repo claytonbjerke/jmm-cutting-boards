@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import NavLink from '.././NavLink';
+import NavLink from './nav-link';
 
 let LoggedOutNav = () => {
   return (

@@ -1,3 +1,9 @@
 {
-    "extends": "reactjs"
+    "extends": "reactjs",
+    "plugins": [
+        "flow-vars"
+    ],
+    "rules": {
+        "eqeqeq": [2, "smart"]
+    }
 }

@@ -6,7 +6,7 @@ import {
   LOGGED_OUT,
   APP_START_UP,
   APP_START_UP_FINISHED
-} from './AuthActions';
+} from './auth-actions';
 const defaultState = new Immutable.List();
 
 export default function authReducer(state = defaultState, action) {

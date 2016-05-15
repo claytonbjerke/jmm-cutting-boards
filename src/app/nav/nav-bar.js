@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {IndexLink} from 'react-router';
 
-import LoggedInNav from './logged-in-nav';
-import LoggedOutNav from './logged-out-nav';
+import LoggedInNav from './nav-logged-in';
+import LoggedOutNav from './nav-logged-out';
 
 let NavBar = ({
   loggedIn

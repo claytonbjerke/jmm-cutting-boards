@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import NavLink from '../app/NavLink';
+import NavLink from '../app/nav/nav-link';
 import SignUpForm from './sign-up-form';
 
 /*

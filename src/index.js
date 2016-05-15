@@ -6,12 +6,12 @@ import {combineReducers, createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import createLogger from 'redux-logger';
 
-import App from './app/App';
-import Home from './home/Home';
+import App from './app/app';
+import Home from './home/home';
 import LoginPage from './login/login-page';
 import Dashboard from './dashboard/dashboard';
 import SignUpPage from './sign-up/sign-up-page';
-import * as reducers from './app/reducers';
+import * as reducers from './app/app-reducers';
 
 /*
 TODO:
