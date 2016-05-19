@@ -1,18 +1,15 @@
 import React from 'react';
 import {render} from 'react-dom';
-import reduxThunk from 'redux-thunk';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
-import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
-import createLogger from 'redux-logger';
 
+import store from './store/configureStore';
 import App from './app/app';
 import Home from './home/home-page';
 import LoginPage from './login/login-page';
 import Dashboard from './dashboard/dashboard-page';
 import SignUpPage from './sign-up/sign-up-page';
-import rootReducer from './app/app-reducers';
 
 /*
 TODO:
@@ -35,23 +32,6 @@ const requireAuth = (nextState, replace) => {
     });
   }
 };
-
-const logger = createLogger();
-const store = createStore(rootReducer, compose(
-  applyMiddleware(
-    reduxThunk,
-    logger
-  ),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
-);
-
-if (module.hot) {
-  module.hot.accept('./app/app-reducers', () => {
-    const nextReducer = require('./app/app-reducers').default;
-    store.replaceReducer(nextReducer);
-  });
-}
 
 const history = syncHistoryWithStore(browserHistory, store);
 
