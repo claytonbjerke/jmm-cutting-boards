@@ -6,12 +6,13 @@ import {
 } from 'redux';
 
 import rootReducer from '.././app/app-reducers';
+import DevTools from '.././containers/dev-tools';
 
 const store = createStore(rootReducer, compose(
   applyMiddleware(
     reduxThunk
   ),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
+  DevTools.instrument()
 ));
 
 if (module.hot) {

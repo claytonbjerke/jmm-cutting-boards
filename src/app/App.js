@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import {appStartUp} from '.././auth/auth-actions';
 import NavBar from './nav/nav-bar';
+import DevTools from '.././containers/dev-tools';
 
 class App extends React.Component {
 
@@ -16,6 +17,7 @@ class App extends React.Component {
       <div>
         <NavBar/>
         {this.props.children}
+        <DevTools/>
       </div>
     );
   }
