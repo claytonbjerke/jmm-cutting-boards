@@ -21,7 +21,9 @@ export default {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin(GLOBALS),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('styles.css', {
+      allChunks: true
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin()
   ],
@@ -29,7 +31,7 @@ export default {
     loaders: [{
       test: /(\.css|\.scss)$/,
       include: path.join(__dirname, 'src'),
-      loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap')
+      loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox')
     }, {
       test: /\.js$/,
       include: [
