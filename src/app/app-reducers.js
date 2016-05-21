@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import {routerReducer} from 'react-router-redux';
+import {reducer as formReducer} from 'redux-form';
 
 /*
 
@@ -13,8 +14,9 @@ import authReducer from '../auth/auth-reducer';
 import signUpReducer from '../sign-up/sign-up-reducer';
 
 const rootReducer = combineReducers({
-  authReducer,
+  auth: authReducer,
   signUpReducer,
+  form: formReducer,
   routing: routerReducer
 });
 

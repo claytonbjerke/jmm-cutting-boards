@@ -20,6 +20,9 @@ export default {
     publicPath: 'http://localhost:3000/',
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['', '.jsx', '.scss', '.js', '.json']
+  },
   plugins: [
     new webpack.DefinePlugin(GLOBALS),
     new webpack.HotModuleReplacementPlugin(),
@@ -31,8 +34,12 @@ export default {
       include: path.join(__dirname, 'src'),
       loaders: ['react-hot', 'babel']
     }, {
-      test: /\.css$/,
-      loaders: ['style', 'css?sourceMap']
+      test: /(\.scss|\.css)$/,
+      loaders: [
+        require.resolve('style-loader'),
+        require.resolve('css-loader') + '?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        require.resolve('sass-loader') + '?sourceMap'
+      ]
     }]
   }
 };

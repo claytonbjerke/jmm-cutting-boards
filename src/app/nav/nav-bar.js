@@ -32,7 +32,7 @@ const mapStateToProps = (
     state
 ) => {
   return {
-    loggedIn: state.authReducer.loggedIn
+    loggedIn: state.auth.loggedIn
   };
 };
 

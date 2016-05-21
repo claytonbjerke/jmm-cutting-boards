@@ -15,10 +15,7 @@ import SignUpPage from './sign-up/sign-up-page';
 TODO:
 - need app init action for initial launch to check login cred and if token still
   stored in local storage (react-redux-router??)
-- redux actions for nav events
-  - https://github.com/reactjs/react-router-redux#what-if-i-want-to-issue-navigation-events-via-redux-actions
-- Chrome ext. seems buggy, use: https://github.com/gaearon/redux-devtools-dock-monitor
-  - this also allows for other devs to share dev tool settings
+
  */
 
 const requireAuth = (nextState, replace) => {
