@@ -4,7 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
-  __DEV__: false
+  '__DEV__': false
 };
 
 export default {
@@ -27,16 +27,16 @@ export default {
   ],
   module: {
     loaders: [{
-      test: /\.css$/,
+      test: /(\.css|\.scss)$/,
       include: path.join(__dirname, 'src'),
-      loader: ExtractTextPlugin.extract("css?sourceMap")
+      loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap')
     }, {
       test: /\.js$/,
       include: [
-        path.resolve(__dirname, "src")
+        path.resolve(__dirname, 'src')
       ],
       loader: 'react-hot!babel',
       exclude: [path.resolve(__dirname, 'node_modules')]
     }]
-  },
-}
+  }
+};

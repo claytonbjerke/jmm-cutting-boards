@@ -4,6 +4,8 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {Provider} from 'react-redux';
 
+import './styles/jmm-theme.scss';
+
 import store from './store/configureStore';
 import App from './app/app';
 import Home from './home/home-page';
