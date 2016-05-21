@@ -9,7 +9,7 @@ import {logInUser} from '.././auth/auth-actions';
 const Login = ({fields, handleSubmit, dispatch}) => {
   let username = fields.username;
   let password = fields.password;
-  let keepLoggedIn = fields.keepLoggedIn;
+  let keepMeLoggedIn = fields.keepMeLoggedIn;
   return (
     <div>
       <Input
@@ -19,7 +19,6 @@ const Login = ({fields, handleSubmit, dispatch}) => {
         {...username}
       />
       <Input
-        autoFocus
         type={'password'}
         label={'Password'}
         {...password}
@@ -27,7 +26,7 @@ const Login = ({fields, handleSubmit, dispatch}) => {
       <div>
         <Checkbox
           label={'Keep me logged in'}
-          {...keepLoggedIn}
+          {...keepMeLoggedIn}
         />
         <Button
           type={'submit'}
@@ -54,5 +53,5 @@ Login.propTypes = {
 
 export default reduxForm({
   form: 'login',
-  fields: ['username', 'password', 'keepLoggedIn']
+  fields: ['username', 'password', 'keepMeLoggedIn']
 })(Login);

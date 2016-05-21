@@ -38,8 +38,12 @@ export default {
       loaders: [
         require.resolve('style-loader'),
         require.resolve('css-loader') + '?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        require.resolve('sass-loader') + '?sourceMap'
+        require.resolve('sass-loader') + '?sourceMap',
+        'toolbox'
       ]
     }]
+  },
+  toolbox: {
+    theme: path.join(__dirname, 'src/styles/jmm-theme.scss')
   }
 };
