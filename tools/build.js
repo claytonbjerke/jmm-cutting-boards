@@ -1,4 +1,4 @@
-/*eslint-disable no-console */
+/* eslint-disable no-console */
 import webpack from 'webpack';
 import colors from 'colors';
 

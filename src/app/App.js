@@ -1,8 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Layout from 'react-toolbox/lib/layout/Layout';
+import Panel from 'react-toolbox/lib/layout/Panel';
+import NavDrawer from 'react-toolbox/lib/layout/NavDrawer';
+import AppBar from 'react-toolbox/lib/app_bar/AppBar';
+import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import {appStartUp} from '.././auth/auth-actions';
-import NavBar from './nav/nav-bar';
+import {toggleSideNav} from './nav/nav-actions';
+import NavSideDrawerItems from './nav/nav-side-drawer-items';
+
+import style from '.././styles/styles.scss';
 
 class App extends React.Component {
 
@@ -13,10 +21,30 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <NavBar/>
-        {this.props.children}
-      </div>
+      <Layout className={style.content}>
+        <NavDrawer
+          active={this.props.active}
+          permanentAt={'sm'}
+          onOverlayClick={() => {
+            this.props.dispatch(toggleSideNav())
+          }}
+        >
+          <NavSideDrawerItems/>
+        </NavDrawer>
+        <Panel>
+          <AppBar
+            flat
+          >
+            <IconButton
+              icon={'menu'}
+              inverse
+              onClick={() => {
+                this.props.dispatch(toggleSideNav());
+              }}
+            />
+          </AppBar>
+        </Panel>
+      </Layout>
     );
   }
 }
@@ -27,4 +55,14 @@ App.propTypes = {
   loggedIn: React.PropTypes.bool
 };
 
-export default connect()(App);
+const mapStateToProps = (
+    state
+) => {
+  return {
+    active: state.nav.active
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(App);

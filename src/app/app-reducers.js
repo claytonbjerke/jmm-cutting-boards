@@ -12,12 +12,14 @@ TODO:
 
 import authReducer from '../auth/auth-reducer';
 import signUpReducer from '../sign-up/sign-up-reducer';
+import navReducer from './nav/nav-reducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   signUpReducer,
   form: formReducer,
-  routing: routerReducer
+  routing: routerReducer,
+  nav: navReducer
 });
 
 export default rootReducer;
