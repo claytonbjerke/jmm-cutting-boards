@@ -30,7 +30,7 @@ const Login = ({fields, handleSubmit, dispatch}) => {
         />
         <Button
           type={'submit'}
-          label="Login"
+          label={'Login'}
           raised
           accent
           onClick={handleSubmit((data) => {
