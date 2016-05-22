@@ -12,6 +12,42 @@ import NavSideDrawerItems from './nav/nav-side-drawer-items';
 
 import style from '.././styles/styles.scss';
 
+let loggedInLinks = [{
+  id: 'homeId',
+  index: true,
+  label: 'Home',
+  to: '/',
+  icon: 'home'
+}, {
+  id: 'dashId',
+  label: 'Dashboard',
+  to: '/dashboard',
+  icon: 'dashboard'
+}, {
+  id: 'logoutId',
+  label: 'Logout',
+  to: '/',
+  icon: 'account_circle'
+}];
+
+let loggedOutLinks = [{
+  id: 'homeId',
+  index: true,
+  label: 'Home',
+  to: '/',
+  icon: 'home'
+}, {
+  id: 'signUpId',
+  label: 'Sign Up',
+  to: '/sign-up',
+  icon: 'assignment'
+}, {
+  id: 'loginId',
+  label: 'Login',
+  to: '/login',
+  icon: 'account_circle'
+}];
+
 class App extends React.Component {
 
   constructor(props) {
@@ -19,17 +55,27 @@ class App extends React.Component {
     this.props.dispatch(appStartUp());
   }
 
+/*
+
+TODO:
+- have a set of links for now that are toggled by logged in status (temporary)
+
+ */
+
   render() {
+    let links = this.props.loggedIn ? loggedInLinks : loggedOutLinks;
     return (
       <Layout className={style.content}>
         <NavDrawer
           active={this.props.active}
-          permanentAt={'sm'}
+          permanentAt={'lg'}
           onOverlayClick={() => {
             this.props.dispatch(toggleSideNav())
           }}
         >
-          <NavSideDrawerItems/>
+          <NavSideDrawerItems
+            items={links}
+          />
         </NavDrawer>
         <Panel>
           <AppBar
@@ -43,6 +89,9 @@ class App extends React.Component {
               }}
             />
           </AppBar>
+          <div style={{ flex: 1, overflowY: 'auto', padding: '1.8rem' }}>
+               {this.props.children}
+          </div>
         </Panel>
       </Layout>
     );
@@ -59,7 +108,8 @@ const mapStateToProps = (
     state
 ) => {
   return {
-    active: state.nav.active
+    active: state.nav.active,
+    loggedIn: state.auth.loggedIn
   };
 };
 
