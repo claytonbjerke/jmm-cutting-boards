@@ -7,7 +7,7 @@ TODO:
 
 const login = (username, password) => {
   return new Promise((resolve, reject) => {
-    if (username === 'hi' && password === 'lol') {
+    if (username.toLowerCase() === 'hi' && password.toLowerCase() === 'lol') {
       localStorage.token = Math.random().toString(36).substring(7);
       resolve(true);
     } else {

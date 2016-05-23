@@ -2,25 +2,46 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
+import {LinkContainer} from 'react-router-bootstrap';
+
+import Navigation from 'react-toolbox/lib/navigation';
+import Link from 'react-toolbox/lib/link/Link';
 
 import {logOutUser} from '../../auth/auth-actions';
-import NavLink from './nav-link';
+
 
 let LoggedInNav = ({onClick}) => {
   const logOut = () => {
     onClick();
   };
   return (
-    <div>
-      <li>
-        <NavLink to="/dashboard">{'Dashboard'}</NavLink>
-      </li>
-      <li>
-        <NavLink to="/" onClick={logOut}>
-          {'Log out'}
-        </NavLink>
-      </li>
-    </div>
+    <Navigation type={'vertical'}>
+      <LinkContainer
+        to={'/'}
+      >
+        <Link
+          label={'Home'}
+          icon={'home'}
+        />
+      </LinkContainer>
+      <LinkContainer
+        to={'/dashboard'}
+      >
+        <Link
+          label={'Dashboard'}
+          icon={'dashboard'}
+        />
+      </LinkContainer>
+      <LinkContainer
+        to={'/'}
+        onClick={logOut}
+      >
+        <Link
+          label={'Logout'}
+          icon={'account_circle'}
+        />
+      </LinkContainer>
+    </Navigation>
   );
 };
 

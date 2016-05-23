@@ -1,18 +1,38 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {LinkContainer} from 'react-router-bootstrap';
 
-import NavLink from './nav-link';
+import Navigation from 'react-toolbox/lib/navigation';
+import Link from 'react-toolbox/lib/link/Link';
 
 let LoggedOutNav = () => {
   return (
-    <div>
-      <li>
-        <NavLink to="/login">{'Login'}</NavLink>
-      </li>
-      <li>
-        <NavLink to="/sign-up">{'Sign Up'}</NavLink>
-      </li>
-    </div>
+    <Navigation type={'vertical'}>
+      <LinkContainer
+        to={'/'}
+      >
+        <Link
+          label={'Home'}
+          icon={'home'}
+        />
+      </LinkContainer>
+      <LinkContainer
+        to={'/login'}
+      >
+        <Link
+          label={'Login'}
+          icon={'account_circle'}
+        />
+      </LinkContainer>
+      <LinkContainer
+        to={'/sign-up'}
+      >
+        <Link
+          label={'Sign Up'}
+          icon={'assignment'}
+        />
+      </LinkContainer>
+    </Navigation>
   );
 };
 

@@ -1,81 +1,23 @@
 import React from 'react';
-import {LinkContainer} from 'react-router-bootstrap';
 import {connect} from 'react-redux';
 
-import Navigation from 'react-toolbox/lib/navigation';
-import Link from 'react-toolbox/lib/link/Link';
+import NavLoggedIn from './nav-logged-in';
+import NavLoggedOut from './nav-logged-out';
 
-let loggedInLinks = [{
-  id: 'homeId',
-  index: true,
-  label: 'Home',
-  to: '/',
-  icon: 'home'
-}, {
-  id: 'dashId',
-  label: 'Dashboard',
-  to: '/dashboard',
-  icon: 'dashboard'
-}, {
-  id: 'logoutId',
-  label: 'Logout',
-  to: '/',
-  icon: 'account_circle'
-}];
-
-let loggedOutLinks = [{
-  id: 'homeId',
-  index: true,
-  label: 'Home',
-  to: '/',
-  icon: 'home'
-}, {
-  id: 'signUpId',
-  label: 'Sign Up',
-  to: '/sign-up',
-  icon: 'assignment'
-}, {
-  id: 'loginId',
-  label: 'Login',
-  to: '/login',
-  icon: 'account_circle'
-}];
-
-const getRows = (items) => {
-  let rows = [];
-  items.forEach((row) => {
-    rows.push(
-      <LinkContainer
-        key={row.id}
-        onClick={() => {
-          console.log('click');
-        }}
-        {...row}
-      >
-        <Link
-          {...row}
-        />
-      </LinkContainer>
-    );
-  });
-  return rows;
-};
-
-const NavSideDrawerItems = props => {
-  let rows = getRows(props.items);
+const NavSideDrawerItems = ({loggedIn}) => {
   return (
-    <Navigation type={'vertical'}>
-      {rows}
-    </Navigation>
+    loggedIn
+      ? (<NavLoggedIn/>)
+      : (<NavLoggedOut/>)
   );
 };
 
 NavSideDrawerItems.propTypes = {
-  items: React.PropTypes.array.isRequired
+  loggedIn: React.PropTypes.bool.isRequired
 };
 
-const mapStateToProps = () => {
-
+const mapStateToProps = (state) => {
+  return {loggedIn: state.auth.loggedIn};
 };
 
-export default connect()(NavSideDrawerItems);
+export default connect(mapStateToProps)(NavSideDrawerItems);
