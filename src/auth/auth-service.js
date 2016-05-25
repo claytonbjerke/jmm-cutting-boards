@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 /*
 
 TODO:
@@ -5,15 +7,41 @@ TODO:
 
  */
 
+const url = 'https://vl0c0b3bkk.execute-api.us-east-1.amazonaws.com/prod';
+
 const login = (username, password) => {
-  return new Promise((resolve, reject) => {
-    if (username.toLowerCase() === 'hi' && password.toLowerCase() === 'lol') {
+  if (username.toLowerCase() === 'hi' && password.toLowerCase() === 'lol') {
+    return new Promise((resolve) => {
       localStorage.token = Math.random().toString(36).substring(7);
       resolve(true);
-    } else {
-      reject(false);
-    }
-  });
+    });
+  } else {
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        functionName: 'authenticateUserByName',
+        password: password, // '1612echo',
+        email: 'kylechandler@hollywood.com',
+        firstname: 'kyle',
+        lastname: 'chandler',
+        username: username // 'kylechandler'
+      })
+    }).then((res) => {
+      return res.json().then((data) => {
+        let success = false;
+        if (data.success) {
+          success = data.success;
+          localStorage.token = data.token;
+        }
+        return success;
+      });
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
 };
 
 const loggedIn = () => {

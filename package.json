@@ -51,7 +51,8 @@
     "redux": "^3.5.1",
     "redux-form": "^5.2.4",
     "redux-thunk": "^2.0.1",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
