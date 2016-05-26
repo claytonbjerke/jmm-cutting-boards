@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import req from '.././services/echo-web';
 
 /*
 
@@ -16,30 +17,24 @@ const login = (username, password) => {
       resolve(true);
     });
   } else {
-    return fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        functionName: 'authenticateUserByName',
-        password: password, // '1612echo',
-        email: 'kylechandler@hollywood.com',
-        firstname: 'kyle',
-        lastname: 'chandler',
-        username: username // 'kylechandler'
-      })
-    }).then((res) => {
-      return res.json().then((data) => {
-        let success = false;
-        if (data.success) {
-          success = data.success;
-          localStorage.token = data.token;
-        }
-        return success;
-      });
-    }).catch((err) => {
-      console.log(err);
+    return req.post(url, JSON.stringify({
+      functionName: 'authenticateUserByName',
+      email: 'kylechandler@hollywood.com',
+      firstname: 'kyle',
+      lastname: 'chandler',
+      username: username, // 'kylechandler',
+      password: password // 1612echo
+    }))
+    .then((res) => {
+      let success = false;
+      if (res.success) {
+        success = res.success;
+        localStorage.token = res.token;
+      }
+      return success;
+    })
+    .catch((error) => {
+      console.log('request failed', error);
     });
   }
 };
