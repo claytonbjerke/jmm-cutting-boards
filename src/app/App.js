@@ -8,9 +8,8 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import {appStartUp} from '.././libs/auth/auth-actions';
 import {toggleSideNav} from './nav/nav-actions';
-import NavSideDrawerItems from './nav/nav-side-drawer-items';
-
 import style from '.././styles/styles.scss';
+import NavLinks from './nav/nav-links';
 
 class App extends React.Component {
 
@@ -29,12 +28,10 @@ class App extends React.Component {
             this.props.dispatch(toggleSideNav());
           }}
         >
-          <NavSideDrawerItems/>
+          <NavLinks type={'vertical'}/>
         </NavDrawer>
         <Panel>
-          <AppBar
-            flat
-          >
+          <AppBar>
             <IconButton
               icon={'menu'}
               inverse
@@ -53,6 +50,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
+  active: React.PropTypes.bool,
   children: React.PropTypes.element.isRequired,
   dispatch: React.PropTypes.func.isRequired,
   loggedIn: React.PropTypes.bool
