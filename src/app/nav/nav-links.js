@@ -29,7 +29,7 @@ const loggedOutLinks = [
 const NavLinks = ({
   loggedIn,
   type,
-  dispatch
+  logout
 }) => {
   let links = loggedIn ? loggedInLinks : loggedOutLinks;
   return (
@@ -57,9 +57,7 @@ const NavLinks = ({
             to={'/'}
             label={'Logout'}
             icon={'account_circle'}
-            onClick={() => {
-              dispatch(logOutUser());
-            }}
+            onClick={logout}
           />
       ) : (
         ''
@@ -72,7 +70,7 @@ const NavLinks = ({
 NavLinks.propTypes = {
   loggedIn: React.PropTypes.bool,
   type: React.PropTypes.string,
-  dispatch: React.PropTypes.func.isRequired
+  logout: React.PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -81,6 +79,15 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => {
+      dispatch(logOutUser());
+    }
+  };
+};
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(NavLinks);
