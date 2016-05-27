@@ -4,7 +4,7 @@ import Button from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
 import Checkbox from 'react-toolbox/lib/checkbox';
 
-import {logInUser} from '.././auth/auth-actions';
+import {logInUser} from '.././libs/auth/auth-actions';
 
 const Login = ({fields, handleSubmit, dispatch}) => {
   let username = fields.username;

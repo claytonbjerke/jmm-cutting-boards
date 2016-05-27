@@ -10,7 +10,7 @@ TODO:
 
  */
 
-import authReducer from '../auth/auth-reducer';
+import authReducer from '.././libs/auth/auth-reducer';
 import signUpReducer from '../sign-up/sign-up-reducer';
 import navReducer from './nav/nav-reducer';
 

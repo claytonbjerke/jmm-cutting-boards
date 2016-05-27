@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import req from '.././services/echo-web';
+import req from '.././web';
 
 /*
 
@@ -22,8 +22,8 @@ const login = (username, password) => {
       email: 'kylechandler@hollywood.com',
       firstname: 'kyle',
       lastname: 'chandler',
-      username: username, // 'kylechandler',
-      password: password // 1612echo
+      username: username, // kylechandler,
+      password: password //  1612echo
     }))
     .then((res) => {
       let success = false;

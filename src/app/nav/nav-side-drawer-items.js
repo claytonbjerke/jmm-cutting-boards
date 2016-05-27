@@ -13,7 +13,7 @@ const NavSideDrawerItems = ({loggedIn}) => {
 };
 
 NavSideDrawerItems.propTypes = {
-  loggedIn: React.PropTypes.bool.isRequired
+  loggedIn: React.PropTypes.bool
 };
 
 const mapStateToProps = (state) => {

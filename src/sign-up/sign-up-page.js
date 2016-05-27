@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import NavLink from '../app/nav/nav-link';
 import SignUpForm from './sign-up-form';
 
 /*
@@ -19,8 +18,7 @@ class SignUpPage extends React.Component {
           <SignUpForm/>
         ) : (
           <div>
-            {'Please check your email. '}
-            <NavLink to="/login">{'Login'}</NavLink>
+            {'Please check your email.'}
           </div>
         )}
       </div>

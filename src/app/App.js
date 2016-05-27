@@ -6,7 +6,7 @@ import NavDrawer from 'react-toolbox/lib/layout/NavDrawer';
 import AppBar from 'react-toolbox/lib/app_bar/AppBar';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 
-import {appStartUp} from '.././auth/auth-actions';
+import {appStartUp} from '.././libs/auth/auth-actions';
 import {toggleSideNav} from './nav/nav-actions';
 import NavSideDrawerItems from './nav/nav-side-drawer-items';
 

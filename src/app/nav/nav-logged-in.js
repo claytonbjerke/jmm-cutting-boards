@@ -7,7 +7,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 import Navigation from 'react-toolbox/lib/navigation';
 import Link from 'react-toolbox/lib/link/Link';
 
-import {logOutUser} from '../../auth/auth-actions';
+import {logOutUser} from '../../libs/auth/auth-actions';
 
 
 let LoggedInNav = ({onClick}) => {

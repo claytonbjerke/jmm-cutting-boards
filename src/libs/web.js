@@ -5,7 +5,7 @@ function checkStatus(response) {
     let error = new Error(response.statusText);
     error.response = response;
     throw error;
-  }
+  } 
 }
 
 function parseJSON(response) {
