@@ -26,7 +26,7 @@ const loggedOutLinks = [
   }
 ];
 
-const NavLinks = ({
+export let NavLinks = ({
   loggedIn,
   type,
   logout
